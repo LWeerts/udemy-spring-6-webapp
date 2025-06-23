@@ -32,7 +32,7 @@ public class BootstrapData implements CommandLineRunner {
         spring.setCity("Los Angeles");
         spring.setState("CA");
         spring.setZip("963.852");
-        publisherRepository.save(spring);
+        spring = publisherRepository.save(spring);
 
 
         Author john = new Author();
@@ -44,6 +44,7 @@ public class BootstrapData implements CommandLineRunner {
         lotf.setTitle("Lord of the Flies");
         lotf.setIsbn("123456");
         lotf.setAuthors(Set.of(john));
+        lotf.setPublisher(spring);
         lotf = bookRepository.save(lotf);
 
         Author jane = new Author();
@@ -55,6 +56,7 @@ public class BootstrapData implements CommandLineRunner {
         whatIf.setTitle("What If");
         whatIf.setIsbn("123457");
         whatIf.setAuthors(Set.of(jane));
+        whatIf.setPublisher(spring);
         whatIf = bookRepository.save(whatIf);
 
         System.out.println("In bootstrap");
