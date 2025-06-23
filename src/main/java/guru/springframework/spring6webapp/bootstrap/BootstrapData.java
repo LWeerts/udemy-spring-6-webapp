@@ -2,12 +2,13 @@ package guru.springframework.spring6webapp.bootstrap;
 
 import guru.springframework.spring6webapp.domain.Author;
 import guru.springframework.spring6webapp.domain.Book;
+import guru.springframework.spring6webapp.domain.Publisher;
 import guru.springframework.spring6webapp.repositories.AuthorRepository;
 import guru.springframework.spring6webapp.repositories.BookRepository;
+import guru.springframework.spring6webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -15,14 +16,25 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
-    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        Publisher spring = new Publisher();
+        spring.setPublisherName("Spring Boot");
+        spring.setAddress("9966 Apple road");
+        spring.setCity("Los Angeles");
+        spring.setState("CA");
+        spring.setZip("963.852");
+        publisherRepository.save(spring);
+
+
         Author john = new Author();
         john.setFirstName("John");
         john.setLastName("Smith");
@@ -48,5 +60,6 @@ public class BootstrapData implements CommandLineRunner {
         System.out.println("In bootstrap");
         System.out.println("Author count: " + authorRepository.count());
         System.out.println("Book count: " + bookRepository.count());
+        System.out.println("Publisher count: " + publisherRepository.count());
     }
 }
