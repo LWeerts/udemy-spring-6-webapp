@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8">
+    <title>Online library</title>
+</head>
+<body>
+<h1>Author List</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Publisher</th>
+    </tr>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}">123</td>
+        <td th:text="${author.firstName + ' ' + author.lastName}">No author</td>
+        <td th:text="${author.books.size}">-1</td>
+    </tr>
+</table>
+
+</body>
+</html>
